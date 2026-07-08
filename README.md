@@ -6,14 +6,14 @@ Giloo 在 Getting Real '26（洛杉磯，2026/07/22）的演講簡報。
 ## 這是什麼
 
 - 簡報本體是**單一自包含 HTML**：[`public/index.html`](public/index.html)（約 42 頁投影片，字型用 Google Fonts CDN，無其他外部依賴）。
-- **上線網址：** https://giloo-la-2026.netlify.app/
+- **上線網址：** https://rurushih0422-create.github.io/giloo-la-2026-deck/
 
 ## 怎麼改（重點）
 
 **直接編輯 `public/index.html`，然後 push 到 `main` 分支就會自動上線。**
 
 每次推上 `main`，GitHub Action（`.github/workflows/deploy.yml`）會自動把 `public/`
-部署到上面的 Netlify 網址，網址永遠不變，約 1 分鐘生效。
+部署到上面的 GitHub Pages 網址，網址永遠不變，約 1 分鐘生效。
 
 ### 用手機改（不用電腦）
 
