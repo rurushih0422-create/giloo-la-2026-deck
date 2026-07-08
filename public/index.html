@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giloo LA 2026 — Where Asian Cinema Becomes Impact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#ea2b40;
+    --navy-700:#0e0f11;
+    --navy-500:#1a1c20;
+    --navy-400:#252a31;
+    --fg:#ffffff;
+    --fg-2:rgba(255,255,255,.72);
+    --fg-3:rgba(255,255,255,.48);
+    --border-subtle:rgba(255,255,255,.06);
+    --border-default:rgba(255,255,255,.10);
+    --gold:#dfbc62;
+    --sans:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --cjk:"Noto Sans TC",var(--sans);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#000;font-family:var(--sans);-webkit-font-smoothing:antialiased;
+       display:flex;flex-direction:column;align-items:center;gap:28px;padding:40px 0}
+
+  .slide{width:1280px;height:720px;background:var(--navy-700);position:relative;
+         overflow:hidden;flex:none;color:var(--fg)}
+  .slide.alt{background:var(--navy-500)}
+  .pad{position:absolute;inset:0;padding:76px 96px;display:flex;flex-direction:column}
+  .center{justify-content:center}
+
+  .rule{width:64px;height:2px;background:var(--brand);margin-bottom:16px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--brand)}
+  .eyebrow.muted{color:var(--fg-3)}
+
+  .display-xl{font-size:74px;line-height:1.04;font-weight:700;letter-spacing:-1.8px}
+  .display-lg{font-size:58px;line-height:1.07;font-weight:700;letter-spacing:-1.4px}
+  .headline{font-size:46px;line-height:1.1;font-weight:700;letter-spacing:-1px}
+  .lede{font-size:20px;line-height:1.5;font-weight:400;color:var(--fg-2);max-width:840px}
+  .body-lg{font-size:19px;line-height:1.55;color:var(--fg-2)}
+  .red{color:var(--brand)}
+  .cjk{font-family:var(--cjk);letter-spacing:0}
+  .mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}
+  .mt32{margin-top:32px}.mt40{margin-top:40px}.mt48{margin-top:48px}
+  .spacer{flex:1}
+
+  .wordmark{font-weight:700;font-size:26px;letter-spacing:-1px;color:var(--fg)}
+  .wordmark .dot{color:var(--brand)}
+  .footer-mark{position:absolute;right:40px;bottom:30px;font-weight:700;font-size:18px;
+               letter-spacing:-.6px;color:var(--fg);opacity:.8}
+  .footer-mark .dot{color:var(--brand)}
+  .page-no{position:absolute;left:96px;bottom:32px;font-size:12px;color:var(--fg-3);letter-spacing:1px}
+
+  /* lists */
+  ul.list{list-style:none;display:flex;flex-direction:column;gap:18px;max-width:980px}
+  ul.list li{font-size:21px;line-height:1.4;color:var(--fg-2);padding-left:28px;position:relative}
+  ul.list li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:2px;background:var(--brand)}
+  ul.list li b{color:var(--fg);font-weight:600}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  .stat .val{font-size:58px;font-weight:700;letter-spacing:-1.6px;line-height:1}
+  .stat .lab{margin-top:12px;font-size:14px;color:var(--fg-2);letter-spacing:.5px;line-height:1.35}
+  .stats.three{grid-template-columns:repeat(3,1fr)}
+
+  /* hero stat support */
+  .support{display:flex;align-items:baseline;gap:24px}
+  .support .val{font-size:60px;font-weight:700;letter-spacing:-1.6px;color:var(--brand);line-height:1}
+  .support .lab{font-size:19px;color:var(--fg-2);max-width:520px;line-height:1.45}
+  .pillars{display:flex;gap:48px;margin-top:30px}
+  .pillars div{font-size:17px;color:var(--fg-3);line-height:1.4;max-width:280px}
+  .pillars b{display:block;color:var(--fg-2);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
+
+  /* cards */
+  .cards{display:grid;gap:20px}
+  .cards.two{grid-template-columns:repeat(2,1fr)}
+  .cards.three{grid-template-columns:repeat(3,1fr)}
+  .cards.five{grid-template-columns:repeat(5,1fr)}
+  .card{background:var(--navy-400);border:1px solid var(--border-default);border-radius:12px;padding:28px}
+  .card.ai{border-top:2px solid var(--brand)}
+  .card .knum{font-size:13px;font-weight:700;letter-spacing:1.4px;color:var(--brand);margin-bottom:12px}
+  .card h3{font-size:21px;font-weight:600;letter-spacing:-.2px;margin-bottom:10px}
+  .card p{font-size:15px;line-height:1.5;color:var(--fg-2)}
+  .card.sm{padding:22px}
+  .card.sm h3{font-size:17px;margin-bottom:6px}
+  .card.sm p{font-size:13px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .step .n{font-size:40px;font-weight:700;color:var(--brand);letter-spacing:-1px;line-height:1}
+  .step h3{font-size:19px;font-weight:600;margin-top:14px;margin-bottom:8px}
+  .step p{font-size:14px;color:var(--fg-2);line-height:1.45}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:12px;max-width:1040px}
+  .chip{border:1px solid var(--border-default);border-radius:9999px;padding:10px 18px;font-size:16px;color:var(--fg-2)}
+  .chip.gold{border-color:var(--gold);color:var(--gold)}
+
+  /* quote */
+  .quote{font-size:40px;line-height:1.25;font-weight:600;letter-spacing:-.6px;max-width:1000px}
+  .quote .mark{color:var(--brand)}
+  .attr{margin-top:24px;font-size:16px;color:var(--fg-2)}
+
+  /* value chain */
+  .chain{display:flex;align-items:stretch;gap:10px;margin-top:8px}
+  .chain .node{flex:1;border:1px solid var(--border-default);border-radius:10px;padding:18px 16px;text-align:center;color:var(--fg-3);font-size:15px}
+  .chain .node b{display:block;color:var(--fg-2);font-weight:600;font-size:16px;margin-bottom:4px}
+  .chain .node.bad{border-color:rgba(234,43,64,.5)}
+  .chain .node.bad b{color:var(--brand)}
+  .chain .node.giloo{background:var(--navy-400);border-color:var(--brand);border-width:1px;border-top:2px solid var(--brand)}
+  .chain .node.giloo b{color:var(--fg)}
+  .chain .arrow{align-self:center;color:var(--fg-3);font-size:20px}
+
+  @media print{
+    body{background:#fff;gap:0;padding:0}
+    .slide{page-break-after:always}
+    @page{size:1280px 720px;margin:0}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · COVER -->
+<section class="slide">
+  <div class="pad">
+    <div class="wordmark">giloo<span class="dot">.</span></div>
+    <div class="spacer"></div>
+    <div class="rule"></div>
+    <div class="eyebrow mt8" style="margin-bottom:26px">Giloo · Los Angeles 2026</div>
+    <h1 class="display-xl">Beyond Festivals<br>and Streamers</h1>
+    <p class="body-lg mt24">How Films Find Audiences, Unlock Values, and Drive Impact</p>
+    <div class="spacer"></div>
+  </div>
+</section>
+
+<!-- 2 · PROBLEM (who loses — three cards) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">The Problem</div>
+    <h2 class="headline">Good films shouldn't <span class="red">disappear</span><br>when they're finished</h2>
+    <div class="cards three mt48">
+      <div class="card"><div class="knum">AUDIENCES</div><h3>Can't find them</h3><p>Overseas Chinese &amp; global viewers can't find quality, socially-meaningful Asian films.</p></div>
+      <div class="card"><div class="knum">CREATORS</div><h3>Can't sustain the work</h3><p>Filmmakers depend on distributors to buy rights — funding &amp; revenue stay limited.</p></div>
+      <div class="card"><div class="knum">MARKET</div><h3>Has no channel</h3><p>More films are made every year, but there's no real distribution or viewing path.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 3 · PROBLEM (statement) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:34px">The Problem</div>
+    <h2 class="display-lg">It's not a content problem.<br>It's a <span class="red">distribution</span> problem.</h2>
+    <div class="support mt48">
+      <div class="val">90%</div>
+      <div class="lab">of good films never reach a wide audience —<br>the work exists, but no one is switched on to watch it.</div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 3 · TRANSITION -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:26px">The Answer</div>
+    <h2 class="display-lg">That's why Giloo exists.</h2>
+    <p class="lede mt24">Giloo connects meaningful Asian films with the audiences, communities, and revenue paths they need to survive beyond festivals.</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- LEARNED (after the answer) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">What we've learned</div>
+    <h2 class="headline">Three things we learned</h2>
+    <div class="cards three mt48">
+      <div class="card"><div class="knum">01</div><h3>Curation beats the algorithm</h3><p>A human pointing at the right film does more for a niche title than any feed.</p></div>
+      <div class="card"><div class="knum">02</div><h3>People pay for meaning</h3><p>Audiences will pay for issues and ideas — not only for entertainment.</p></div>
+      <div class="card"><div class="knum">03</div><h3>Community out-distributes ads</h3><p>A film travels further through the people who love it than through any ad budget.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- STORY · the Iwai night -->
+<section class="slide alt">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">One night that proved it</div>
+    <h2 class="display-lg">1,000+ people showed up<br>for one film.</h2>
+    <p class="lede mt40">We streamed <i>All About Lily Chou-Chou</i> — Shunji Iwai's 2001 film — and over a thousand people logged in to watch it together, then stayed to talk with the director himself.</p>
+    <p class="lede mt24">A film's life doesn't end at release. People will still gather for it, years later — if you give them a way.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 4 · AGENDA -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:34px">Agenda</div>
+    <h2 class="headline">What we'll cover</h2>
+    <ul class="list mt40">
+      <li><b>1 — What is Giloo?</b></li>
+      <li><b>2 — For Creators:</b> upload, distribute, earn</li>
+      <li><b>3 — For Everyone:</b> turn watching and sharing into impact</li>
+      <li><b>4 — Where we are going</b></li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 5 · SECTION 1 -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:26px">About Giloo</div>
+    <h2 class="display-lg">1 &nbsp;·&nbsp; What is Giloo</h2>
+    <p class="lede mt24">Asia's home for documentary, art-house, and issue-driven film.</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 6 · WHAT IS GILOO -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">About Giloo</div>
+    <h2 class="headline">Not an algorithm feed.<br>A <span class="red">curated</span> home for film.</h2>
+    <ul class="list mt40">
+      <li>A curation-led home for documentary, art-house &amp; issue-driven cinema</li>
+      <li>The leading stage for <b>Chinese-language and global filmmakers</b></li>
+      <li>Founded 2018 — Asia's leading issue-driven curation platform</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- LIBRARY + MUSEUM (humanistic positioning) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">A different kind of place</div>
+    <h2 class="headline">Part library, part art museum</h2>
+    <div class="cards two mt48">
+      <div class="card"><div class="knum">LIKE A LIBRARY</div><p>Films as knowledge. Each one here is a window to a world — its people, its conflicts, its ways of seeing — kept alive and always ready to be discovered.</p></div>
+      <div class="card"><div class="knum">LIKE AN ART MUSEUM</div><p>When AI can generate anything, taste becomes the rarest thing. Every film here is chosen for its beauty, its point of view, and its power to stay with you long after it ends.</p></div>
+    </div>
+    <p class="lede mt40">Especially the issue-driven films the mainstream skips — this is where they live.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- WHY TAIWAN -->
+<section class="slide alt">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Why Taiwan</div>
+    <h2 class="headline">A rare soil for<br>issue-driven film</h2>
+    <p class="lede mt40">Taiwan has something uncommon: a diverse, inclusive civil society that actually shows up for difficult films — cultural curiosity, open civic debate, and deep engagement with social questions.</p>
+    <p class="lede mt24">In that environment, documentaries meet a more receptive audience — and a clearer path to impact.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 7 · BY THE NUMBERS -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">By the Numbers</div>
+    <h2 class="headline">Six years of building a stage</h2>
+    <div class="stats mt48">
+      <div class="stat"><div class="val">200<span class="red">+</span></div><div class="lab">COLLABORATING WRITERS &amp; ARTISTS</div></div>
+      <div class="stat"><div class="val">400<span class="red">+</span></div><div class="lab">THEMATIC CURATIONS</div></div>
+      <div class="stat"><div class="val">5,000<span class="red">+</span></div><div class="lab">PUBLISHED FILM NOTES</div></div>
+      <div class="stat"><div class="val">100<span class="red">+</span></div><div class="lab">MEDIA FEATURES</div></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 8 · AUDIENCE -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">The Audience</div>
+    <h2 class="headline">Who comes to Giloo</h2>
+    <div class="cards three mt48">
+      <div class="card"><div class="knum">INDUSTRY INSIDERS</div><p>Filmmakers, producers, editors, cinematographers, actors and international producers — they come to study films, discover new voices, and find future collaborators.</p></div>
+      <div class="card"><div class="knum">DEEP THINKERS</div><p>Curators, senior cinephiles, knowledge seekers and scholars — they explore stories, culture, ideas, and visual beauty.</p></div>
+      <div class="card"><div class="knum">COMMUNITY VOICES</div><p>They share films through social media, classrooms, screenings, talks, film clubs, and their own communities.</p></div>
+    </div>
+    <p class="lede mt40">They don't just watch films — they <span class="red">recommend, share, discuss</span>, and bring stories into their communities.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 9 · REACH -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Our Reach</div>
+    <h2 class="headline">We can move an audience</h2>
+    <div class="stats three mt48">
+      <div class="stat"><div class="val">281,834<span class="red">+</span></div><div class="lab">NEWSLETTER SUBSCRIBERS · 37% OPEN RATE</div></div>
+      <div class="stat"><div class="val">66,321<span class="red">+</span></div><div class="lab">FACEBOOK · 7.5% ENGAGEMENT</div></div>
+      <div class="stat"><div class="val">27,846<span class="red">+</span></div><div class="lab">INSTAGRAM · 7.8% ENGAGEMENT</div></div>
+    </div>
+    <p class="lede mt40">A curated newsletter goes out every Friday.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 10 · CURATION -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Curation</div>
+    <h2 class="headline">Curation is our craft</h2>
+    <ul class="list mt40">
+      <li>Monthly <b>director spotlights</b> &amp; issue-driven themes</li>
+      <li>Hou Hsiao-Hsien · Hamaguchi Ryusuke · Agnès Varda · Wim Wenders</li>
+      <li>Co-branded with <b>Taipei Film Festival · TIDF · Women Make Waves · Le Fresnoy · National Human Rights Museum</b></li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 11 · PARTNERS -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Trusted by the Field</div>
+    <h2 class="headline">We don't stand alone</h2>
+    <p class="body-lg mt32" style="color:var(--fg-3);text-transform:uppercase;letter-spacing:1px;font-size:13px;font-weight:700">Tech</p>
+    <div class="chips mt16"><span class="chip">Appier</span><span class="chip">KKStream</span></div>
+    <p class="body-lg mt24" style="color:var(--fg-3);text-transform:uppercase;letter-spacing:1px;font-size:13px;font-weight:700">Cultural Institutions</p>
+    <div class="chips mt16"><span class="chip">Taipei Film Festival</span><span class="chip">TIDF</span><span class="chip">National Theater &amp; Concert Hall</span><span class="chip">NTMoFA</span><span class="chip">National Geographic</span></div>
+    <p class="body-lg mt24" style="color:var(--fg-3);text-transform:uppercase;letter-spacing:1px;font-size:13px;font-weight:700">Content</p>
+    <div class="chips mt16"><span class="chip">CNEX</span><span class="chip">PTS</span><span class="chip">Dogwoof</span><span class="chip">Journeyman</span><span class="chip">Taskovski</span><span class="chip">Syndicado</span></div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 12 · PRESS -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">In the Press</div>
+    <p class="quote"><span class="mark">“</span>Taiwan's strongest documentary platform —<br>a unique window on the world.<span class="mark">”</span></p>
+    <p class="attr">100+ features across Taiwan's top media · International coverage in <i>Variety</i></p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 13 · VALUE CHAIN (backup) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow muted" style="margin-bottom:24px">Backup · Industry View</div>
+    <h2 class="headline">Distribution is the <span class="red">broken link</span></h2>
+    <div class="chain mt48">
+      <div class="node"><b>Development</b>script · funding</div>
+      <div class="arrow">→</div>
+      <div class="node"><b>Post</b>edit · subtitles</div>
+      <div class="arrow">→</div>
+      <div class="node bad"><b>Distribution</b>rights · marketing · reach</div>
+      <div class="arrow">→</div>
+      <div class="node"><b>Theatrical</b>screenings</div>
+      <div class="arrow">→</div>
+      <div class="node giloo"><b>Platform · Giloo</b>where the work finally lives</div>
+    </div>
+    <p class="lede mt48">Every layer assumes marketing is the next layer's job. Giloo rebuilds the missing distribution step.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 14 · SECTION 2 -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:26px">For Creators</div>
+    <h2 class="display-lg">2 &nbsp;·&nbsp; Giloo Creator</h2>
+    <p class="lede mt24">Your Story, Your Audience.</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 15 · CREATOR OVERVIEW -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">For Creators</div>
+    <h2 class="display-lg">Upload it. Reach the world.<br>Get <span class="red">paid</span>.</h2>
+    <div class="cards three mt48">
+      <div class="card ai"><div class="knum">01 — UPLOAD</div><h3>Upload it yourself</h3><p>A simple Creator Dashboard — no gatekeeper required.</p></div>
+      <div class="card ai"><div class="knum">02 — DISTRIBUTE</div><h3>You set the terms</h3><p>Territories, pricing, worldwide reach, AI subtitles.</p></div>
+      <div class="card ai"><div class="knum">03 — EARN</div><h3>Five ways to earn</h3><p>Streaming, rentals, screenings, fundraising, donations.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 16 · UPLOAD -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Upload</div>
+    <h2 class="headline">A more direct path to audiences</h2>
+    <ul class="list mt40">
+      <li>Creator Dashboard — <b>easily upload, freely edit</b></li>
+      <li>Guided steps: details, cover, stills, awards, cast &amp; crew</li>
+      <li>Master film, subtitles, pricing, license, visibility</li>
+      <li>A smooth, simple backend built for filmmakers</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 17 · CREATOR PAGE -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Your Page</div>
+    <h2 class="headline">A home for you and your work</h2>
+    <ul class="list mt40">
+      <li>Audiences explore your films, follow, and <b>support in one click</b></li>
+      <li>Direct links to your social media</li>
+      <li>A creator journal to share insight and engage fans</li>
+      <li>Tease upcoming projects to attract early sponsorship</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 18 · FIVE WAYS TO EARN -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Earn</div>
+    <h2 class="headline">Five ways to earn</h2>
+    <div class="cards five mt48">
+      <div class="card sm"><h3>SVOD</h3><p>Subscription revenue share</p></div>
+      <div class="card sm"><h3>TVOD</h3><p>Rentals</p></div>
+      <div class="card sm"><h3>Screenings</h3><p>Public &amp; group</p></div>
+      <div class="card sm"><h3>Fundraising</h3><p>Back new projects</p></div>
+      <div class="card sm"><h3>Donations</h3><p>Direct audience support</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 19 · TRANSPARENT -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Revenue</div>
+    <h2 class="headline">Transparent by design</h2>
+    <ul class="list mt40">
+      <li>SVOD: <b>USD 0.4 per viewing hour</b></li>
+      <li>Everything else: Price − tax − 10% Giloo fee − payment fee</li>
+      <li>A real-time revenue dashboard, broken down by source</li>
+      <li>Export your full report anytime</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 20 · DISTRIBUTION CONTROL -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Distribute</div>
+    <h2 class="headline">You control distribution</h2>
+    <ul class="list mt40">
+      <li>Choose viewing territories — Taiwan, US, or <b>worldwide</b></li>
+      <li>Set your own license period</li>
+      <li>Set and adjust pricing anytime, by market</li>
+      <li>Flexible rights to match your distribution status</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 21 · AI SUBTITLES -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Go Global</div>
+    <h2 class="headline">Go global, <span class="red">effortlessly</span></h2>
+    <ul class="list mt40">
+      <li><b>One-click AI subtitle generation</b></li>
+      <li>Traditional Chinese · Simplified Chinese · English (more in development)</li>
+      <li>Upload one source file → multi-language subtitles</li>
+      <li>Lower distribution costs, reach the world</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 22 · ACTIVE DISTRIBUTION (AI) -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">Finding your audience</div>
+    <h2 class="display-lg">We don't just host your film.<br>We help it <span class="red">find its people</span>.</h2>
+    <ul class="list mt40">
+      <li>AI helps match your finished film to the viewers most likely to love it</li>
+      <li>Paired with human curators and Impact Partners who carry it further</li>
+      <li>You keep full control — your rights, your pricing, your call</li>
+      <li>It works on <b>distribution</b> — never on how your film is made</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 23 · FIND AUDIENCE -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Reach</div>
+    <h2 class="headline">We help you find your audience</h2>
+    <ul class="list mt40">
+      <li>Cross-disciplinary curators &amp; international festival partnerships</li>
+      <li><b>Giloo Asian Online Film Festival</b></li>
+      <li>Your work, matched to the people who will care</li>
+    </ul>
+    <p class="lede mt40" style="color:var(--fg-3);font-style:italic">“Unfiltered, uncensored, unforgettable.”</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 24 · SUCCESS CASES -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Proof</div>
+    <h2 class="headline">Creators are already winning</h2>
+    <div class="cards two mt40">
+      <div class="card"><div class="knum">GILOO FEST 2023</div><h3>Global debut</h3><p>USD 1.36M in prizes, a Discord-based filmmaker community.</p></div>
+      <div class="card"><div class="knum">LIVE Q&amp;A</div><h3>1,000+ attending</h3><p>Online sessions with Shunji Iwai &amp; <i>A Chip Odyssey</i>.</p></div>
+      <div class="card"><div class="knum">CROWDFUNDING</div><h3>Funded by fans</h3><p>“Hold the Hope” documentary financed directly by its audience.</p></div>
+      <div class="card"><div class="knum">SCREENINGS + MERCH</div><h3>Sold direct</h3><p><i>Bel Ami</i> — group screenings and merchandise to audiences.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 25 · TAIWAN GLOBAL -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Taiwan to the World</div>
+    <h2 class="headline">Taiwanese films, global stages</h2>
+    <ul class="list mt40">
+      <li><b>Bonjour la France, ici Taiwan</b> — Paris screenings with mk2 &amp; TAICCA</li>
+      <li>Taiwan Film Festival of Boston — online edition</li>
+      <li>Taipei Graphic Arts Festival — Amsterdam &amp; Taipei</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 26 · FEATURED CREATORS -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Featured Creators</div>
+    <h2 class="headline">Directors, brands &amp; distributors<br>on one stage</h2>
+    <div class="chips mt40">
+      <span class="chip">Wei Te-Sheng</span><span class="chip">Lau Kek-Huat</span><span class="chip">Jun Li</span><span class="chip">Wang Yan-ping</span>
+      <span class="chip">The Reporter</span><span class="chip">Parallax Films</span><span class="chip">Kaohsiung Film Archive</span>
+      <span class="chip">Fresh Wave</span><span class="chip">Cai Chang International</span><span class="chip">Andrews Film</span>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 27 · SECTION 3 -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:26px">For Everyone</div>
+    <h2 class="display-lg">3 &nbsp;·&nbsp; Impact Partner</h2>
+    <p class="lede mt24">Become a Giloo Impact Partner.</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 28 · IMPACT STATEMENT -->
+<section class="slide">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Impact Partner</div>
+    <h2 class="display-lg">Let the films you love<br>travel <span class="red">further</span>.</h2>
+    <p class="lede mt32 cjk" style="font-size:26px;color:var(--fg)">讓你喜歡的電影，走到更遠的地方。</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 29 · ALREADY DOING -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">You Already Do This</div>
+    <h2 class="headline">We turn it into work<br>that <span class="red">accumulates</span></h2>
+    <ul class="list mt40">
+      <li>You finish a film and write about it</li>
+      <li>Friends ask you what is worth watching</li>
+      <li>You run screenings, build lists, share what matters</li>
+    </ul>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 30 · THREE REASONS -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">Why Join</div>
+    <h2 class="headline">Three reasons to join</h2>
+    <div class="cards three mt48">
+      <div class="card ai"><div class="knum">01 — IMPACT</div><h3>Create influence</h3><p>Recommend films and move important issues with your own viewpoint.</p></div>
+      <div class="card ai"><div class="knum">02 — TOOLKIT</div><h3>10-minute pack</h3><p>Curated clips, copy and templates — ready to post.</p></div>
+      <div class="card ai"><div class="knum">03 — INCOME</div><h3>You earn</h3><p>When viewers rent or subscribe via your link, you get a share.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 31 · HOW IT WORKS -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">How It Works</div>
+    <h2 class="headline">Four steps</h2>
+    <div class="steps mt48">
+      <div class="step"><div class="n">1</div><h3>Apply</h3><p>Become an Impact Partner.</p></div>
+      <div class="step"><div class="n">2</div><h3>Pick a film</h3><p>Choose one you love.</p></div>
+      <div class="step"><div class="n">3</div><h3>Recommend</h3><p>Your way, with our toolkit.</p></div>
+      <div class="step"><div class="n">4</div><h3>Earn</h3><p>Track results, collect your share.</p></div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 32 · THREE-SIDED WIN -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">Why Creators Love It Too</div>
+    <h2 class="headline">The community<br>becomes the <span class="red">distribution</span></h2>
+    <div class="pillars mt48">
+      <div><b>Creators</b>earn from every recommendation</div>
+      <div><b>Audiences</b>discover films they'd never find</div>
+      <div><b>Partners</b>are rewarded for their taste</div>
+    </div>
+    <p class="lede mt40">A three-sided win that compounds over time.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- SURPRISED -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">What surprised us</div>
+    <h2 class="display-lg">Viewers wanted to do<br>more than <span class="red">watch</span>.</h2>
+    <p class="lede mt40">We built a place to watch films. What surprised us: people didn't just want to watch — they wanted to recommend, host screenings, and bring others in. That insight is what became Impact Partner.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- STILL HARD -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">What's still hard</div>
+    <h2 class="headline">We haven't solved everything</h2>
+    <ul class="list mt40">
+      <li>Discovery is still hard — great films still get missed</li>
+      <li>Sustainable creator income takes scale we're still building</li>
+      <li>Reaching audiences beyond Chinese-language markets is just beginning</li>
+    </ul>
+    <p class="lede mt40">We're sharing this because we're still figuring it out — and we'd rather learn alongside you.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 33 · SECTION 4 -->
+<section class="slide alt">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:26px">What's Next</div>
+    <h2 class="display-lg">4 &nbsp;·&nbsp; Where We're Going</h2>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 34 · VISION -->
+<section class="slide">
+  <div class="pad center">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:30px">The Vision</div>
+    <h2 class="display-lg">Not one blockbuster —<br>a <span class="red">system</span>.</h2>
+    <p class="lede mt32">Creators upload. Community amplifies. Impact compounds.</p>
+    <p class="lede mt16 cjk" style="color:var(--fg)">讓台灣與亞洲電影，被世界看見。</p>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section class="slide alt">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">If you take one thing</div>
+    <h2 class="headline">What you can take away</h2>
+    <ul class="list mt40">
+      <li>A finished film is a <b>beginning</b>, not an end — plan its second life</li>
+      <li>Your most valuable audience already shares — give them a way to</li>
+      <li><b>Curation and community are distribution</b></li>
+    </ul>
+    <p class="lede mt40">True whether or not you ever use Giloo.</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 35 · CTA -->
+<section class="slide">
+  <div class="pad">
+    <div class="rule"></div>
+    <div class="eyebrow" style="margin-bottom:32px">Let's talk</div>
+    <h2 class="headline">If you're doing this too,<br>let's talk</h2>
+    <ul class="list mt40">
+      <li><b>Directors</b> — bring your film a second life</li>
+      <li><b>Cinephiles</b> — turn what you share into impact</li>
+      <li><b>Industry &amp; festivals</b> — let's build reach together</li>
+    </ul>
+    <p class="lede mt40 red" style="font-weight:600">giloo.ist</p>
+    <div class="spacer"></div>
+  </div>
+  <div class="footer-mark">giloo<span class="dot">.</span></div>
+</section>
+
+<!-- 36 · CLOSING -->
+<section class="slide">
+  <div class="pad center">
+    <div class="wordmark" style="position:absolute;top:76px;left:96px">giloo<span class="dot">.</span></div>
+    <div class="rule"></div>
+    <h2 class="display-xl">Beyond Festivals<br>and Streamers</h2>
+    <p class="lede mt32">Thank you &nbsp;—&nbsp; Q &amp; A &nbsp;·&nbsp; giloo.ist</p>
+  </div>
+</section>
+
+</body>
+</html>
